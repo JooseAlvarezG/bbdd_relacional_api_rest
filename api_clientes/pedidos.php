@@ -15,9 +15,9 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 switch ($metodo) {
     case 'GET':
         $sql = 'SELECT p.id, p.producto, p.cantidad, p.estado, p.creado_en,
-                       c.id AS cliente_id, c.nombre AS cliente
+                       c.id_cliente AS cliente_id, c.nombre AS cliente
                 FROM pedidos p
-                INNER JOIN clientes c ON c.id = p.cliente_id
+                INNER JOIN clientes c ON c.id_cliente = p.cliente_id
                 ORDER BY p.id DESC';
         $stmt = $pdo->query($sql);
         responder(200, ['ok' => true, 'pedidos' => $stmt->fetchAll()]);

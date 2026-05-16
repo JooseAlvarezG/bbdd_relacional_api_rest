@@ -26,7 +26,7 @@ switch ($metodo) {
                 responder(400, ['ok' => false, 'mensaje' => 'ID inválido']);
             }
 
-            $stmt = $pdo->prepare('SELECT * FROM clientes WHERE id = ?');
+            $stmt = $pdo->prepare('SELECT * FROM clientes WHERE id_cliente = ?');
             $stmt->execute([$id]);
             $cliente = $stmt->fetch();
 
@@ -37,7 +37,7 @@ switch ($metodo) {
             responder(200, ['ok' => true, 'cliente' => $cliente]);
         }
 
-        $stmt = $pdo->query('SELECT * FROM clientes ORDER BY id DESC');
+        $stmt = $pdo->query('SELECT * FROM clientes ORDER BY id_cliente DESC');
         responder(200, ['ok' => true, 'clientes' => $stmt->fetchAll()]);
         break;
 
@@ -46,30 +46,30 @@ switch ($metodo) {
         $datos = leerJson();
 
         $nombre = limpiarTexto($datos['nombre'] ?? '');
-        $correo = limpiarTexto($datos['correo'] ?? '');
+        $email = limpiarTexto($datos['email'] ?? '');
         $telefono = limpiarTexto($datos['telefono'] ?? '');
 
-        if ($nombre === '' || $correo === '') {
-            responder(400, ['ok' => false, 'mensaje' => 'Nombre y correo son obligatorios']);
+        if ($nombre === '' || $email === '') {
+            responder(400, ['ok' => false, 'mensaje' => 'Nombre y email son obligatorios']);
         }
 
-        if (!validarCorreo($correo)) {
-            responder(400, ['ok' => false, 'mensaje' => 'Correo inválido']);
+        if (!validarCorreo($email)) {
+            responder(400, ['ok' => false, 'mensaje' => 'email inválido']);
         }
 
         try {
-            $stmt = $pdo->prepare('INSERT INTO clientes (nombre, correo, telefono) VALUES (?, ?, ?)');
-            $stmt->execute([$nombre, $correo, $telefono]);
+            $stmt = $pdo->prepare('INSERT INTO clientes (nombre, email, telefono) VALUES (?, ?, ?)');
+            $stmt->execute([$nombre, $email, $telefono]);
 
             responder(201, [
                 'ok' => true,
                 'mensaje' => 'Cliente creado correctamente',
-                'id' => $pdo->lastInsertId()
+                'id_cliente' => $pdo->lastInsertId()
             ]);
         } catch (PDOException $e) {
             responder(409, [
                 'ok' => false,
-                'mensaje' => 'No se pudo crear el cliente. Puede que el correo ya exista.',
+                'mensaje' => 'No se pudo crear el cliente. Puede que el email ya exista.',
                 'detalle' => $e->getMessage()
             ]);
         }
@@ -86,19 +86,19 @@ switch ($metodo) {
         $datos = leerJson();
 
         $nombre = limpiarTexto($datos['nombre'] ?? '');
-        $correo = limpiarTexto($datos['correo'] ?? '');
+        $email = limpiarTexto($datos['email'] ?? '');
         $telefono = limpiarTexto($datos['telefono'] ?? '');
 
-        if ($nombre === '' || $correo === '') {
-            responder(400, ['ok' => false, 'mensaje' => 'Nombre y correo son obligatorios']);
+        if ($nombre === '' || $email === '') {
+            responder(400, ['ok' => false, 'mensaje' => 'Nombre y email son obligatorios']);
         }
 
-        if (!validarCorreo($correo)) {
-            responder(400, ['ok' => false, 'mensaje' => 'Correo inválido']);
+        if (!validarCorreo($email)) {
+            responder(400, ['ok' => false, 'mensaje' => 'email inválido']);
         }
 
-        $stmt = $pdo->prepare('UPDATE clientes SET nombre = ?, correo = ?, telefono = ? WHERE id = ?');
-        $stmt->execute([$nombre, $correo, $telefono, $id]);
+        $stmt = $pdo->prepare('UPDATE clientes SET nombre = ?, email = ?, telefono = ? WHERE id_cliente = ?');
+        $stmt->execute([$nombre, $email, $telefono, $id]);
 
         if ($stmt->rowCount() === 0) {
             responder(404, [
@@ -118,7 +118,7 @@ switch ($metodo) {
             responder(400, ['ok' => false, 'mensaje' => 'ID inválido']);
         }
 
-        $stmt = $pdo->prepare('DELETE FROM clientes WHERE id = ?');
+        $stmt = $pdo->prepare('DELETE FROM clientes WHERE id_cliente = ?');
         $stmt->execute([$id]);
 
         if ($stmt->rowCount() === 0) {
