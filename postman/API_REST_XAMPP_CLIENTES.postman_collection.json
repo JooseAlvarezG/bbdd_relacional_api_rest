@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "API REST XAMPP Clientes - Zu PRO",
+    "description": "Colección Postman para probar API REST PHP + MySQL compatible con XAMPP.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/api_clientes"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clientes - GET listar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/clientes.php"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Respuesta ok', () => pm.expect(pm.response.json().ok).to.eql(true));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clientes - GET por ID",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/clientes.php?id=1"
+      }
+    },
+    {
+      "name": "Clientes - POST crear",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Valentina Mu\\u00f1oz\",\n  \"correo\": \"valentina.munoz@correo.cl\",\n  \"telefono\": \"+56944444444\"\n}"
+        },
+        "url": "{{base_url}}/clientes.php"
+      }
+    },
+    {
+      "name": "Clientes - PUT actualizar",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Valentina Mu\\u00f1oz Actualizada\",\n  \"correo\": \"valentina.actualizada@correo.cl\",\n  \"telefono\": \"+56955555555\"\n}"
+        },
+        "url": "{{base_url}}/clientes.php?id=1"
+      }
+    },
+    {
+      "name": "Clientes - DELETE eliminar",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/clientes.php?id=3"
+      }
+    },
+    {
+      "name": "Pedidos - GET listar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/pedidos.php"
+      }
+    },
+    {
+      "name": "Pedidos - POST crear",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente_id\": 1,\n  \"producto\": \"Teclado mec\\u00e1nico\",\n  \"cantidad\": 1,\n  \"estado\": \"pendiente\"\n}"
+        },
+        "url": "{{base_url}}/pedidos.php"
+      }
+    },
+    {
+      "name": "Seguridad - ID inválido",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/clientes.php?id=abc"
+      }
+    },
+    {
+      "name": "Seguridad - Correo inválido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Prueba\",\n  \"correo\": \"correo_malo\",\n  \"telefono\": \"123\"\n}"
+        },
+        "url": "{{base_url}}/clientes.php"
+      }
+    }
+  ]
+}
