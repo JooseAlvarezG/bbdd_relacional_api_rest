@@ -1,22 +1,15 @@
 {
   "info": {
+    "_postman_id": "e8333095-036b-4616-a0ef-45e0dfec31f6",
     "name": "API REST XAMPP Clientes - Zu PRO",
     "description": "Colección Postman para probar API REST PHP + MySQL compatible con XAMPP.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53993836",
+    "_collection_link": "https://go.postman.co/collection/53993836-e8333095-036b-4616-a0ef-45e0dfec31f6?source=collection_link"
   },
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost/api_clientes"
-    }
-  ],
   "item": [
     {
       "name": "Clientes - GET listar",
-      "request": {
-        "method": "GET",
-        "url": "{{base_url}}/clientes.php"
-      },
       "event": [
         {
           "listen": "test",
@@ -28,14 +21,44 @@
             ]
           }
         }
-      ]
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/clientes.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Clientes - GET por ID",
       "request": {
         "method": "GET",
-        "url": "{{base_url}}/clientes.php?id=1"
-      }
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/clientes.php?id=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Clientes - POST crear",
@@ -51,8 +74,17 @@
           "mode": "raw",
           "raw": "{\n  \"nombre\": \"Valentina Mu\\u00f1oz\",\n  \"email\": \"valentina.munoz@email.cl\",\n  \"telefono\": \"+56944444444\"\n}"
         },
-        "url": "{{base_url}}/clientes.php"
-      }
+        "url": {
+          "raw": "{{base_url}}/clientes.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Clientes - PUT actualizar",
@@ -68,22 +100,63 @@
           "mode": "raw",
           "raw": "{\n  \"nombre\": \"Valentina Mu\\u00f1oz Actualizada\",\n  \"email\": \"valentina.actualizada@email.cl\",\n  \"telefono\": \"+56955555555\"\n}"
         },
-        "url": "{{base_url}}/clientes.php?id=1"
-      }
+        "url": {
+          "raw": "{{base_url}}/clientes.php?id=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Clientes - DELETE eliminar",
       "request": {
         "method": "DELETE",
-        "url": "{{base_url}}/clientes.php?id=3"
-      }
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/clientes.php?id=3",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Pedidos - GET listar",
       "request": {
         "method": "GET",
-        "url": "{{base_url}}/pedidos.php"
-      }
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pedidos.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "pedidos.php"
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Pedidos - POST crear",
@@ -99,15 +172,40 @@
           "mode": "raw",
           "raw": "{\n  \"cliente_id\": 1,\n  \"producto\": \"Teclado mec\\u00e1nico\",\n  \"cantidad\": 1,\n  \"estado\": \"pendiente\"\n}"
         },
-        "url": "{{base_url}}/pedidos.php"
-      }
+        "url": {
+          "raw": "{{base_url}}/pedidos.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "pedidos.php"
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Seguridad - ID inválido",
       "request": {
         "method": "GET",
-        "url": "{{base_url}}/clientes.php?id=abc"
-      }
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/clientes.php?id=abc",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "abc"
+            }
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "Seguridad - email inválido",
@@ -123,8 +221,23 @@
           "mode": "raw",
           "raw": "{\n  \"nombre\": \"Prueba\",\n  \"email\": \"email_malo\",\n  \"telefono\": \"123\"\n}"
         },
-        "url": "{{base_url}}/clientes.php"
-      }
+        "url": {
+          "raw": "{{base_url}}/clientes.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clientes.php"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/api_clientes"
     }
   ]
 }
