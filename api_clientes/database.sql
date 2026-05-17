@@ -11,11 +11,11 @@ DROP TABLE IF EXISTS pedidos;
 DROP TABLE IF EXISTS clientes;
 
 CREATE TABLE clientes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    correo VARCHAR(120) NOT NULL UNIQUE,
+    email VARCHAR(120) NOT NULL UNIQUE,
     telefono VARCHAR(30) NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE pedidos (
@@ -26,12 +26,12 @@ CREATE TABLE pedidos (
     estado ENUM('pendiente','pagado','enviado','cancelado') NOT NULL DEFAULT 'pendiente',
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_pedidos_clientes
-        FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+        FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-INSERT INTO clientes (nombre, correo, telefono) VALUES
+INSERT INTO clientes (nombre, email, telefono) VALUES
 ('Ana Pérez', 'ana.perez@correo.cl', '+56911111111'),
 ('Diego Soto', 'diego.soto@correo.cl', '+56922222222'),
 ('Camila Rojas', 'camila.rojas@correo.cl', '+56933333333');
