@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "e8333095-036b-4616-a0ef-45e0dfec31f6",
-    "name": "API REST XAMPP Clientes - Zu PRO",
-    "description": "Colección Postman para probar API REST PHP + MySQL compatible con XAMPP.",
+    "name": "API REST Node Clientes y Pedidos",
+    "description": "Colección Postman para probar API REST desarrollada con Node.js, Express y MySQL.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "53993836",
     "_collection_link": "https://go.postman.co/collection/53993836-e8333095-036b-4616-a0ef-45e0dfec31f6?source=collection_link"
